@@ -7,6 +7,7 @@ import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 import { AppRoutingModule } from "./app.routing";
 import { AppComponent } from "./app.component";
 import { MenuComponent } from "./menu/menu.component";
+import { DishdetailComponent } from "./dishdetail/dishdetail.component";
 
 import { DishService } from './services/dish.service';
 import { ProcessHTTPMsgService } from './services/process-httpmsg.service';
@@ -19,6 +20,7 @@ import { baseURL } from './shared/baseurl';
 // Uncomment and add to NgModule imports  if you need to use the HTTP wrapper
  import { NativeScriptHttpModule } from "nativescript-angular/http";
 
+
  @NgModule({
     bootstrap: [
         AppComponent
@@ -30,7 +32,8 @@ import { baseURL } from './shared/baseurl';
     ],
     declarations: [
         AppComponent,
-        MenuComponent
+        MenuComponent,
+        DishdetailComponent
     ],
     providers: [
         {provide: 'BaseURL', useValue: baseURL},
