@@ -8,6 +8,7 @@ import { AppRoutingModule } from "./app.routing";
 import { AppComponent } from "./app.component";
 import { MenuComponent } from "./menu/menu.component";
 import { DishdetailComponent } from "./dishdetail/dishdetail.component";
+import { HomeComponent } from './home/home.component';
 import { DrawerComponent } from "./shared/drawer/drawer.component";
 
 import { DishService } from './services/dish.service';
@@ -21,6 +22,8 @@ import { baseURL } from './shared/baseurl';
 // Uncomment and add to NgModule imports  if you need to use the HTTP wrapper
  import { NativeScriptHttpModule } from "nativescript-angular/http";
  import { NativeScriptUISideDrawerModule } from "nativescript-telerik-ui/sidedrawer/angular";
+import { PromotionService } from "./services/promotion.service";
+import { LeaderService } from "./services/leader.service";
 
  @NgModule({
     bootstrap: [
@@ -35,12 +38,15 @@ import { baseURL } from './shared/baseurl';
     declarations: [
         AppComponent,
         DrawerComponent,
+        HomeComponent,
         MenuComponent,
         DishdetailComponent
     ],
     providers: [
         {provide: 'BaseURL', useValue: baseURL},
         DishService,
+        PromotionService,
+        LeaderService,
         ProcessHTTPMsgService
     ],
     schemas: [
