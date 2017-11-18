@@ -27,9 +27,8 @@
                         <Label class="body" [text]="promotion.description" textWrap="true"></Label>
                     </StackLayout>
                 </StackLayout>
-                <ActivityIndicator busy="true" *ngIf="!(promotion ||
-promoErrMess)" width="50" height="50" class="activity
--indicator"></ActivityIndicator>
+                <ActivityIndicator busy="true" *ngIf="!(promotion || promoErrMess)" width="50" height="50" class="activity-indicator">
+                </ActivityIndicator>
                 <Label *ngIf="promoErrMess" [text]="'Error: ' + promoErrMess"></Label>
             </StackLayout>
             <StackLayout row="2">
@@ -41,8 +40,8 @@ promoErrMess)" width="50" height="50" class="activity
                         <Label class="body" [text]="leader.description" textWrap="true"></Label>
                     </StackLayout>
                 </StackLayout>
-                <ActivityIndicator busy="true" *ngIf="!(leader || leaderErrMess
-)" width="50" height="50" class="activity-indicator"></ActivityIndicator>
+                <ActivityIndicator busy="true" *ngIf="!(leader || leaderErrMess)" width="50" height="50" class="activity-indicator">
+                </ActivityIndicator>
                 <Label *ngIf="leaderErrMess" [text]="'Error: ' + leaderErrMess"></Label>
             </StackLayout>
         </GridLayout>

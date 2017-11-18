@@ -8,7 +8,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/delay';
 import 'rxjs/add/operator/catch';
 /*
-Generated class for the DishProvider provider.
+Generated class for the LeaderProvider provider.
 See https://angular.io/docs/ts/latest/guide/dependency-injection.html
 for more info on providers and Angular 2 DI.
 */
@@ -16,7 +16,7 @@ for more info on providers and Angular 2 DI.
 export class LeaderService {
     constructor(public http: Http,
         private processHTTPMsgService: ProcessHTTPMsgService) { }
-    getPromotions(): Observable<Leader[]> {
+    getLeaders(): Observable<Leader[]> {
         return this.http.get(baseURL + 'leaders')
             .map(res => {
                 return this.processHTTPMsgService.extractData
