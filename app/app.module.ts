@@ -27,7 +27,7 @@ import { baseURL } from './shared/baseurl';
 // Uncomment and add to NgModule imports  if you need to use the HTTP wrapper
     import { NativeScriptHttpModule } from "nativescript-angular/http";
     import { NativeScriptUISideDrawerModule } from "nativescript-telerik-ui/sidedrawer/angular";
-
+    import { TNSFontIconModule } from 'nativescript-ngx-fonticon';
 
  @NgModule({
     bootstrap: [
@@ -37,7 +37,10 @@ import { baseURL } from './shared/baseurl';
         NativeScriptModule,
         AppRoutingModule,
         NativeScriptHttpModule,
-        NativeScriptUISideDrawerModule
+        NativeScriptUISideDrawerModule,
+        TNSFontIconModule.forRoot({
+            'fa': './fonts/font-awesome.min.css'
+            })
     ],
     declarations: [
         AppComponent,
