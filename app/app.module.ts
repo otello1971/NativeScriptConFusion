@@ -28,7 +28,9 @@ import { baseURL } from './shared/baseurl';
 // Uncomment and add to NgModule imports  if you need to use the HTTP wrapper
     import { NativeScriptHttpModule } from "nativescript-angular/http";
     import { NativeScriptUISideDrawerModule } from "nativescript-telerik-ui/sidedrawer/angular";
+    import { NativeScriptUIListViewModule } from "nativescript-telerik-ui/listview/angular";
     import { TNSFontIconModule } from 'nativescript-ngx-fonticon';
+import { FavoritesComponent } from "./favorites/favorites.component";
 
  @NgModule({
     bootstrap: [
@@ -39,6 +41,7 @@ import { baseURL } from './shared/baseurl';
         AppRoutingModule,
         NativeScriptHttpModule,
         NativeScriptUISideDrawerModule,
+        NativeScriptUIListViewModule,
         TNSFontIconModule.forRoot({
             'fa': './fonts/font-awesome.min.css'
             })
@@ -50,7 +53,8 @@ import { baseURL } from './shared/baseurl';
         MenuComponent,
         DishdetailComponent,
         AboutComponent,
-        ContactComponent
+        ContactComponent,
+        FavoritesComponent
     ],
     providers: [
         {provide: 'BaseURL', useValue: baseURL},
