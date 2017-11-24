@@ -18,6 +18,8 @@ import { PromotionService } from "./services/promotion.service";
 import { LeaderService } from "./services/leader.service";
 import { DishService } from './services/dish.service';
 import { FavoriteService } from "./services/favorite.service";
+import { NativeScriptFormsModule } from "nativescript-angular/forms";
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { ProcessHTTPMsgService } from './services/process-httpmsg.service';
 import { baseURL } from './shared/baseurl';
@@ -42,6 +44,8 @@ import { FavoritesComponent } from "./favorites/favorites.component";
         NativeScriptHttpModule,
         NativeScriptUISideDrawerModule,
         NativeScriptUIListViewModule,
+        NativeScriptFormsModule,
+        ReactiveFormsModule,
         TNSFontIconModule.forRoot({
             'fa': './fonts/font-awesome.min.css'
             })
