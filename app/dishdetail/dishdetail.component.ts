@@ -11,6 +11,7 @@ import { TNSFontIconService } from 'nativescript-ngx-fonticon';
 import { Toasty } from 'nativescript-toasty';
 import { action } from "ui/dialogs";
 
+//In case you're using "comment" folder (in lowercase), please modify here:
 import { CommentComponent } from '../Comment/comment.component';
 
 
@@ -84,7 +85,13 @@ export class DishdetailComponent implements OnInit {
         
         action(options).then((result) => {
             console.log(result);
-            result === "Add to favorites"? this.addToFavorites(): this.openCommentDialog();
+            switch (result) {
+                case "Add to favorites":
+                    this.addToFavorites();
+                    break;
+                case "Add Commnent":
+                    this.openCommentDialog();
+            }
         });
     }
 
@@ -97,9 +104,12 @@ export class DishdetailComponent implements OnInit {
         
         this.modalService.showModal(CommentComponent, options)
             .then((dialogResult: Comment) => {
-                this.dish.comments.push(dialogResult);
-                this.height += 85;
-                //console.log(JSON.stringify(this.dish.comments));
-            });
+                if(dialogResult){
+                    this.dish.comments.push(dialogResult);
+                    this.height += 85; // adjusting comments ListView height
+                }
+            },
+            () => console.log('Dishdetail: error retrieving comment info.')
+           );
     }
 }
