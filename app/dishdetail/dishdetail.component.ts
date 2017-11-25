@@ -1,4 +1,5 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewContainerRef } from '@angular/core';
+import { ModalDialogService, ModalDialogOptions } from "nativescript-angular/modal-dialog";
 import { Dish } from '../shared/dish';
 import { Comment } from '../shared/comment';
 import { DishService } from '../services/dish.service';
@@ -8,6 +9,10 @@ import { RouterExtensions } from 'nativescript-angular/router';
 import 'rxjs/add/operator/switchMap';
 import { TNSFontIconService } from 'nativescript-ngx-fonticon';
 import { Toasty } from 'nativescript-toasty';
+import { action } from "ui/dialogs";
+
+import { CommentComponent } from '../Comment/comment.component';
+
 
 @Component({
     selector: 'app-dishdetail',
@@ -23,27 +28,36 @@ export class DishdetailComponent implements OnInit {
     avgstars: string;
     numcomments: number;
     favorite: boolean = false;
+    height = 0;  //height for the comments list adjustment
+    public result: string;
 
     constructor(private dishservice: DishService,
         private favoriteservice: FavoriteService,
         private fonticon: TNSFontIconService,
         private route: ActivatedRoute,
         private routerExtensions: RouterExtensions,
+        private modalService: ModalDialogService,
+        private viewContainerRef: ViewContainerRef,  
         @Inject('BaseURL') private BaseURL) { }
 
     ngOnInit() {
         this.route.params
             .switchMap((params: Params) => this.dishservice.getDish(+params['id']))
-            .subscribe(dish => {
-                this.dish = dish;
-                this.favorite = this.favoriteservice.isFavorite(this.dish.id);
-                this.numcomments = this.dish.comments.length;
-                let total = 0;
-                this.dish.comments.forEach(comment => total += comment.rating);
-                this.avgstars = (total / this.numcomments).toFixed(2);
-            },
-            errmess => { this.dish = null; this.errMess = <any>errmess; });
+            .subscribe(
+                dish => {
+                    this.dish = dish;
+                    this.favorite = this.favoriteservice.isFavorite(this.dish.id);
+                    this.numcomments = this.dish.comments.length;
+                    let total = 0;
+                    this.dish.comments.forEach(comment => total += comment.rating);
+                    this.avgstars = (total / this.numcomments).toFixed(2);
+                    this.height = 100 + 85 * this.dish.comments.length;
+                },
+                errmess => { 
+                    this.dish = null; this.errMess = <any>errmess; 
+                });
     }
+
     addToFavorites() {
         if (!this.favorite) {
           console.log('Adding to Favorites', this.dish.id);
@@ -54,5 +68,38 @@ export class DishdetailComponent implements OnInit {
       }
     goBack(): void {
         this.routerExtensions.back();
+    }
+
+// *******************************************************
+// ****                ASSIGNMENT 2                    ***
+// *******************************************************
+    
+    openActionDialog(){
+        let options = {
+            title: "Actions",
+            // message: "no message",
+            cancelButtonText: "Cancel",
+            actions: ["Add to favorites", "Add Commnent"]
+        };
+        
+        action(options).then((result) => {
+            console.log(result);
+            result === "Add to favorites"? this.addToFavorites(): this.openCommentDialog();
+        });
+    }
+
+    openCommentDialog(){
+        let options: ModalDialogOptions = {
+            // context: { isFavorite: this.favorite},
+            // fullscreen: true,
+            viewContainerRef: this.viewContainerRef
+        };
+        
+        this.modalService.showModal(CommentComponent, options)
+            .then((dialogResult: Comment) => {
+                this.dish.comments.push(dialogResult);
+                this.height += 85;
+                //console.log(JSON.stringify(this.dish.comments));
+            });
     }
 }

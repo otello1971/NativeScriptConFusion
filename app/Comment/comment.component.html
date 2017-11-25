@@ -1,0 +1,18 @@
+<form [formGroup]="commentForm" novalidate>
+    <StackLayout margin="24" horizontalAlignment="center" verticalAlignment="center">
+        <GridLayout class="m-5" rows="auto auto auto auto auto" columns="*, *">    
+            <Label row="0" col="0" class="h3 text-left" text="Your Name" textWrap="true" marginBottom="25"></Label>
+            <TextField row="0" col="1" hint="Your name" autocorrect="false" [(ngModel)]="model.author" 
+                    class="input input-border" formControlName="author"></TextField>
+            <Label row="1" col="0" class="h3 text-left" text="Your Rating" textWrap="true" marginBottom="25"></Label>
+            <Slider row="1" col="1" minValue="1" maxValue="5" [(ngModel)]="model.rating" 
+                    class="input input-border" formControlName="rating"></Slider>
+            <Label row="2" col="0" class="h3 text-left" text="Your Comments" textWrap="true" marginBottom="25"></Label>
+            <TextField row="2" col="1" hint="Your comment" autocorrect="false" [(ngModel)]="model.comment"
+                    class="input input-border" formControlName="comment"></TextField>
+
+            <Button row="3" col="0" text="Submmit" [disabled]="commentForm.invalid" (tap)="onSubmit()"></Button>
+            <Button row="3" col="1" text="Cancel" (tap)="close('Cancel')"></Button>
+        </GridLayout>
+    </StackLayout>
+</form>

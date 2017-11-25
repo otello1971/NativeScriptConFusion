@@ -13,6 +13,10 @@ import { MenuComponent } from "./menu/menu.component";
 import { DishdetailComponent } from "./dishdetail/dishdetail.component";
 import { ContactComponent } from "./contact/contact.component";
 import { AboutComponent } from "./about/about.component";
+import { FavoritesComponent } from "./favorites/favorites.component";
+import { ReservationComponent } from "./reservation/reservation.component";
+import { ReservationModalComponent } from "./reservationmodal/reservationmodal.component";
+import { CommentComponent } from "./Comment/comment.component";
 
 import { PromotionService } from "./services/promotion.service";
 import { LeaderService } from "./services/leader.service";
@@ -32,7 +36,9 @@ import { baseURL } from './shared/baseurl';
     import { NativeScriptUISideDrawerModule } from "nativescript-telerik-ui/sidedrawer/angular";
     import { NativeScriptUIListViewModule } from "nativescript-telerik-ui/listview/angular";
     import { TNSFontIconModule } from 'nativescript-ngx-fonticon';
-import { FavoritesComponent } from "./favorites/favorites.component";
+
+
+
 
  @NgModule({
     bootstrap: [
@@ -58,8 +64,17 @@ import { FavoritesComponent } from "./favorites/favorites.component";
         DishdetailComponent,
         AboutComponent,
         ContactComponent,
-        FavoritesComponent
+        FavoritesComponent,
+        ReservationComponent,
+        ReservationModalComponent,
+        CommentComponent
     ],
+    
+    entryComponents: [
+        ReservationModalComponent, 
+        CommentComponent
+    ],
+
     providers: [
         {provide: 'BaseURL', useValue: baseURL},
         DishService,
@@ -68,6 +83,7 @@ import { FavoritesComponent } from "./favorites/favorites.component";
         FavoriteService,
         ProcessHTTPMsgService
     ],
+
     schemas: [
         NO_ERRORS_SCHEMA
     ]
