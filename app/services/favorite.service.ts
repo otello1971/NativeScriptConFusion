@@ -2,12 +2,26 @@ import { Injectable } from '@angular/core';
 import { Dish } from '../shared/dish';
 import { DishService } from '../services/dish.service';
 import { Observable } from 'rxjs/Observable';
+import { CouchbaseService } from '../services/couchbase.service';
 import 'rxjs/add/operator/map';
+
 @Injectable()
 export class FavoriteService {
+    docId: string = "favorites";
     favorites: Array<number>;
-    constructor(private dishservice: DishService) {
+
+    constructor(
+        private dishservice: DishService,
+        private couchbaseService: CouchbaseService) {
         this.favorites = [];
+
+        let doc = this.couchbaseService.getDocument(this.docId);
+        if( doc == null) {
+            this.couchbaseService.createDocument({"favorites": []}, this.docId);
+        }
+        else {
+        this.favorites = doc.favorites;
+        }
     }
     isFavorite(id: number): boolean {
         return this.favorites.some(el => el === id);
@@ -15,6 +29,7 @@ export class FavoriteService {
     addFavorite(id: number): boolean {
         if (!this.isFavorite(id)) {
             this.favorites.push(id);
+            this.couchbaseService.updateDocument(this.docId, {"favorites": this.favorites});
         }
         return true;
     }
@@ -27,9 +42,11 @@ export class FavoriteService {
         let index = this.favorites.indexOf(id);
         if (index >= 0) {
             this.favorites.splice(index, 1);
+            this.couchbaseService.updateDocument(this.docId, {"favorites": this.favorites});
             return this.getFavorites();
         }
         else {
+            console.log('Deleting non-existant favorite', id);
             return Observable.throw('Deleting non-existant favorite');
         }
     }
