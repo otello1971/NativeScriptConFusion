@@ -1,4 +1,5 @@
 <ActionBar title="Reserve Table" class="action-bar">
+        <NavigationButton text="Menu" icon="res://ic_drawer" (tap)="openDrawer()"></NavigationButton>    
 </ActionBar>
 <RadSideDrawer #drawerComponent tkToggleNavButton showOverNavigation="true">
     <ScrollView tkDrawerContent class="sidedrawer-left">
@@ -6,25 +7,38 @@
             <drawer-content></drawer-content>
         </StackLayout>
     </ScrollView>
-    <ScrollView orientation="vertical" tkMainContent class="page">
-        <GridLayout class="m-5" rows="auto auto auto auto" columns="*, *" [formGroup]="reservation">
-            
-            <Label class="h3 m-15" row="0" col="0" text="No. of Guests" textWrap="true"></Label>
-
-            <TextField class="input input-border" id="textGuests" hint="Enter Number of Guests" [text]='' (tap)="createModalView('guest')"
-                (textChange)="onGuestChange($event)" row="0" col="1" formControlName="guests"></TextField>
-
-            <Label class="h3 m-15" row="1" col="0" text="Smoking?" textWrap="true"></Label>
-
-            <Switch class="m-15" row="1" col="1" checked="false" (checkedChange)="onSmokingChecked($event)" formControlName="smoking"></Switch>
-
-            <Label class="h3 m-15" row="2" col="0" text="Date and Time" textWrap="true"></Label>
-
-            <TextField class="input input-border" id="textDateTime" hint="Enter Date and Time" [text]='' (tap)="createModalView('date-time')"
-                (textChange)="onDateTimeChange($event)" row="2" col="1" formControlName="dateTime"></TextField>
-
-            <Button class="btn btn-primary btn-active m-15" row="3" col="0" text="Submit" (tap)="onSubmit()"></Button>
-
+    <!-- <ScrollView orientation="vertical" tkMainContent class="page"> -->
+    <StackLayout tkMainContent margin="24" horizontalAlignment="center" verticalAlignment="top">
+        <GridLayout id="inputForm" class="m-5" rows="auto auto auto auto" columns="*, *" [formGroup]="reservation" novalidate>
+            <ng-container *ngIf="!submitted">
+                <Label class="h3 m-15" row="0" col="0" text="No. of Guests" textWrap="true"></Label>
+                <TextField class="input input-border" id="textGuests" hint="Enter number of guests" 
+                    row="0" col="1" 
+                    [(ngModel)]="model.guests" (tap)="createModalView('guest')" formControlName="guests">
+                </TextField>
+                <Label class="h3 m-15" 
+                    row="1" col="0" text="Smoking?" textWrap="true"></Label>
+                <Switch class="m-15" 
+                    row="1" col="1"
+                    [(ngModel)]="model.smoking" formControlName="smoking">
+                </Switch>
+                <Label class="h3 m-15" 
+                    row="2" col="0" text="Date and Time" textWrap="true"></Label>
+                <TextField class="input input-border" id="textDateTime" hint="Enter Date and Time" 
+                    row="2" col="1" 
+                    [(ngModel)]="model.dateTime" (tap)="createModalView('date-time')" formControlName="dateTime">
+                </TextField>
+                <Button [isEnabled]="reservation.valid" class="btn btn-primary m-15" row="3" col="0" text="Submit" (tap)="onSubmit()"></Button>
+            </ng-container>
+            <ng-container *ngIf="submitted">
+                <Label class="h3 m-15" row="0" col="0" text="No. of Guests" textWrap="true"></Label>
+                <Label class="h3 m-15" row="0" col="1" [text]="[model.guests]"></Label>
+                <Label class="h3 m-15" row="1" col="0" text="Smoking?" textWrap="true"></Label>
+                <Label class="h3 m-15" row="1" col="1" [text]="[model.smoking]"></Label>
+                <Label class="h3 m-15" row="2" col="0" text="Date and Time" textWrap="true"></Label>
+                <Label class="h3 m-15" row="2" col="1" [text]="[model.dateTime] | date:'medium'"></Label>
+            </ng-container>
         </GridLayout>
-    </ScrollView>
+    </StackLayout>
+    <!-- </ScrollView> -->
 </RadSideDrawer>
