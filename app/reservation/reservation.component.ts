@@ -58,6 +58,10 @@ export class ReservationComponent extends DrawerPage implements OnInit {
             });
     }
 
+    get guests() { return this.reservation.get('guests'); }
+    get smoking() { return this.reservation.get('smoking'); }
+    get dateTime() { return this.reservation.get('dateTime'); }
+
     // *************************************************************************
     // ***                            ASSIGNMENT 3                           ***
     // *************************************************************************
@@ -81,10 +85,6 @@ export class ReservationComponent extends DrawerPage implements OnInit {
         });
         });
     }
-
-    get guests() { return this.reservation.get('guests'); }
-    get smoking() { return this.reservation.get('smoking'); }
-    get dateTime() { return this.reservation.get('dateTime'); }
 
     addReservation(oneReservation: any) {
         const docId = 'reservations';
