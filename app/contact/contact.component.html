@@ -22,6 +22,10 @@
                                     <Label class="body" text="Fax: +852 8765 4321"></Label>
                                     <Label class="body" text="Email:confusion@food.net"></Label>                                                                                                                                                                                    
                                 </StackLayout>
+                                <GridLayout orientation="horizontal" rows="*" columns="*, *" class="m-t-20">
+                                    <Button row="0" col="0" [text]="('fa-phone' | fonticon) + ' Call'" class="btn btn-rounded-sm btn-outline no-border fa "></Button>
+                                    <Button row="0" col="1" [text]="('fa-envelope-o' | fonticon) + ' Email'" class="btn btn-rounded-sm btn-outline no-border fa" (tap)="sendEmail()"></Button>
+                                </GridLayout>  
                             </StackLayout>
                         </StackLayout>
                 </GridLayout>
