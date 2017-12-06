@@ -29,6 +29,7 @@ export class ContactComponent extends DrawerPage {
         }
         else
           console.log('No Email Configured');
-      })
+      });
 
   }
+}

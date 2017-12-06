@@ -24,6 +24,7 @@ import { DishService } from './services/dish.service';
 import { FavoriteService } from "./services/favorite.service";
 import { NativeScriptFormsModule } from "nativescript-angular/forms";
 import { ReactiveFormsModule } from '@angular/forms';
+import { UserAuthComponent } from "./userauth/userauth.component";
 
 import { ProcessHTTPMsgService } from './services/process-httpmsg.service';
 import { CouchbaseService } from './services/couchbase.service';
@@ -37,6 +38,7 @@ import { baseURL } from './shared/baseurl';
     import { NativeScriptUISideDrawerModule } from "nativescript-telerik-ui/sidedrawer/angular";
     import { NativeScriptUIListViewModule } from "nativescript-telerik-ui/listview/angular";
     import { TNSFontIconModule } from 'nativescript-ngx-fonticon';
+
 
 
 
@@ -68,7 +70,8 @@ import { baseURL } from './shared/baseurl';
         FavoritesComponent,
         ReservationComponent,
         ReservationModalComponent,
-        CommentComponent
+        CommentComponent,
+        UserAuthComponent 
     ],
     
     entryComponents: [
