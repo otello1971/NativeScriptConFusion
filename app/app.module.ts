@@ -28,6 +28,7 @@ import { UserAuthComponent } from "./userauth/userauth.component";
 
 import { ProcessHTTPMsgService } from './services/process-httpmsg.service';
 import { CouchbaseService } from './services/couchbase.service';
+import { PlatformService } from "./services/platform.service";
 import { baseURL } from './shared/baseurl';
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
@@ -38,10 +39,6 @@ import { baseURL } from './shared/baseurl';
     import { NativeScriptUISideDrawerModule } from "nativescript-telerik-ui/sidedrawer/angular";
     import { NativeScriptUIListViewModule } from "nativescript-telerik-ui/listview/angular";
     import { TNSFontIconModule } from 'nativescript-ngx-fonticon';
-
-
-
-
 
  @NgModule({
     bootstrap: [
@@ -86,7 +83,8 @@ import { baseURL } from './shared/baseurl';
         PromotionService,
         LeaderService,
         FavoriteService,
-        ProcessHTTPMsgService
+        ProcessHTTPMsgService,
+        PlatformService
     ],
 
     schemas: [
