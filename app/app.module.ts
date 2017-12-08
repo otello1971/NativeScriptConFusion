@@ -36,8 +36,8 @@ import { baseURL } from './shared/baseurl';
 
 // Uncomment and add to NgModule imports  if you need to use the HTTP wrapper
     import { NativeScriptHttpModule } from "nativescript-angular/http";
-    import { NativeScriptUISideDrawerModule } from "nativescript-telerik-ui/sidedrawer/angular";
-    import { NativeScriptUIListViewModule } from "nativescript-telerik-ui/listview/angular";
+    import { NativeScriptUISideDrawerModule } from "nativescript-pro-ui/sidedrawer/angular";
+    import { NativeScriptUIListViewModule } from "nativescript-pro-ui/listview/angular";
     import { TNSFontIconModule } from 'nativescript-ngx-fonticon';
 
  @NgModule({

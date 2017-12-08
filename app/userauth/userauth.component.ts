@@ -4,6 +4,7 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { getString, setString } from 'application-settings';
 import { RouterExtensions } from 'nativescript-angular/router';
 import * as camera from 'nativescript-camera';
+import * as imagepicker from "nativescript-imagepicker";
 import { Image } from 'ui/image';
 
 @Component({
@@ -15,6 +16,7 @@ export class UserAuthComponent implements OnInit {
     loginForm: FormGroup;
     registerForm: FormGroup;
     tabSelectedIndex: number = 0;
+    items = [];
 
     constructor(private page: Page,
         private routerExtensions: RouterExtensions,
@@ -80,6 +82,35 @@ export class UserAuthComponent implements OnInit {
             'password': this.registerForm.get('password').value});
 
             this.tabSelectedIndex = 0;
+    }
+
+    getFromLibrary() {
+        let image = <Image>this.page.getViewById<Image>('myPicture');
+        let context = imagepicker.create({
+            mode: "single"
+        });
+        let _that = this;
+
+        context
+        .authorize()
+        .then(() => {
+            _that.items = [];
+            return context.present();
+        })
+        .then((selection) => {
+            console.log("Selection done:");
+            selection.forEach(function (selected) {
+                console.log("----------------");
+                console.log("uri: " + selected.uri);
+                console.log("fileUri: " + selected.fileUri);
+            });
+
+            image.src = selection[0];// imageAsset;
+            //_that.items = selection;
+            //_that._changeDetectionRef.detectChanges();
+        }).catch(function (e) {
+            console.log(e);
+        });
     }
 
 }

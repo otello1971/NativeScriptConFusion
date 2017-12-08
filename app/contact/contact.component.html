@@ -1,33 +1,35 @@
 <ActionBar title="Contact Us" class="action-bar">
-        <NavigationButton text="Menu" icon="res://ic_drawer" (tap)="openDrawer()"></NavigationButton>    
+    <NavigationButton text="Menu" icon="res://ic_drawer" (tap)="openDrawer()"></NavigationButton>
 </ActionBar>
-    <RadSideDrawer #drawerComponent tkToggleNavButton showOverNavigation="true">
-        <ScrollView tkDrawerContent class="sidedrawer-left">
-            <StackLayout horizontalAlign="left">
-                <drawer-content></drawer-content>
-            </StackLayout>
-        </ScrollView>
-        <StackLayout tkMainContent class="page">
-                <GridLayout class="m-5" rows="auto auto auto">
-                        <StackLayout row="0">
-                            <StackLayout class="p-10 border">
-                                <StackLayout>
-                                    <Label class="h3 p-b-25" text="Contact Information"></Label>
-                                </StackLayout>
-                                <StackLayout class="p-l-25">
-                                    <Label class="body" text="121, Clear Water Bay Road"></Label>
-                                    <Label class="body" text="Clear Water Bay, Kowloon"></Label>
-                                    <Label class="body" text="HONG KONG"></Label>
-                                    <Label class="body" text="Tel: +852 1234 5678"></Label>
-                                    <Label class="body" text="Fax: +852 8765 4321"></Label>
-                                    <Label class="body" text="Email:confusion@food.net"></Label>                                                                                                                                                                                    
-                                </StackLayout>
-                                <GridLayout orientation="horizontal" rows="*" columns="*, *" class="m-t-20">
-                                    <Button row="0" col="0" [text]="('fa-phone' | fonticon) + ' Call'" class="btn btn-rounded-sm btn-outline no-border fa "></Button>
-                                    <Button row="0" col="1" [text]="('fa-envelope-o' | fonticon) + ' Email'" class="btn btn-rounded-sm btn-outline no-border fa" (tap)="sendEmail()"></Button>
-                                </GridLayout>  
-                            </StackLayout>
-                        </StackLayout>
-                </GridLayout>
+<RadSideDrawer #drawerComponent tkToggleNavButton showOverNavigation="true">
+    <ScrollView tkDrawerContent class="sidedrawer-left">
+        <StackLayout horizontalAlign="left">
+            <drawer-content></drawer-content>
         </StackLayout>
-    </RadSideDrawer>
+    </ScrollView>
+    <StackLayout tkMainContent class="page">
+        <GridLayout class="m-5" rows="auto auto auto">
+            <StackLayout row="0">
+                <StackLayout class="p-10 border">
+                    <StackLayout>
+                        <Label class="h3 p-b-25" text="Contact Information"></Label>
+                    </StackLayout>
+                    <StackLayout class="p-l-25">
+                        <Label class="body" text="121, Clear Water Bay Road"></Label>
+                        <Label class="body" text="Clear Water Bay, Kowloon"></Label>
+                        <Label class="body" text="HONG KONG"></Label>
+                        <Label class="body" text="Tel: +852 1234 5678"></Label>
+                        <Label class="body" text="Fax: +852 8765 4321"></Label>
+                        <Label class="body" text="Email:confusion@food.net"></Label>
+                    </StackLayout>
+                    <GridLayout orientation="horizontal" rows="*" columns="*, *" class="m-t-20">
+                        <Button row="0" col="0" [text]="('fa-phone' | fonticon) + ' Call'" class="btn btn-rounded-sm btn-outline no-border fa "
+                            (tap)="callRestaurant()"></Button>
+                        <Button row="0" col="1" [text]="('fa-envelope-o' | fonticon) + ' Email'" class="btn btn-rounded-sm btn-outline no-border fa"
+                            (tap)="sendEmail()"></Button>
+                    </GridLayout>
+                </StackLayout>
+            </StackLayout>
+        </GridLayout>
+    </StackLayout>
+</RadSideDrawer>
